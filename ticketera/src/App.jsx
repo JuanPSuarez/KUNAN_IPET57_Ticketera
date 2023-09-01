@@ -1,15 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import login from './components/login.jsx'
-import './App.css'
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    login()
-  )
+    <section className="">
+      <div className="col-lg-12 mt-5">
+        <img
+          src="../public/Logo Kunan Vertical 1.png"
+          alt="img kunan"
+          className="img"
+        />
+        <div className="col-lg-12 ">
+          <a href="/login" className="btn btn-primary  mt-5  btn-outline-light">
+            Login
+          </a>
+        </div>
+      </div>
+    </section>
+    
+
+  );
+
 }
 
-export default App
+export default App;
