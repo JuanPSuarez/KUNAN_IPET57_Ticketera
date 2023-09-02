@@ -1,4 +1,8 @@
-.dashboard{
-  display:inline-flex;
-  position:relative;
+.dashboard {
+  display: inline-flex;
+  position: relative;
+  
+}
+.img-logo{
+width:2%;
 }

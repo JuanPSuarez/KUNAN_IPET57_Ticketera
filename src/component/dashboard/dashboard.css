@@ -1,0 +1,28 @@
+body {
+    background: rgb(245, 244, 244);
+    filter: drop-shadow(6px 3px 4px #f7f3f3);
+  }
+
+  .ti {
+    color: #181616a6;
+    font-size: 200%;
+  }
+
+  
+.form input {
+    background-color: rgba(255, 255, 255, 0);
+    border-style:double;
+    color: rgba(3, 3, 3, 0.959);
+    outline-color: blue;
+    filter: drop-shadow(10px 8px 6px #11111133);
+  }
+  
+  div > button {
+    filter: drop-shadow(3px 5px 3px #11111133);
+  }
+  
+  span > a {
+    color: black;
+    text-decoration: none;
+    filter: drop-shadow(3px 5px 3px #11111133);
+  }

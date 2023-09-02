@@ -1,6 +1,11 @@
-import "./restablecerPassword.css"
+import Componentes from "./componentes/componetes";
+import "./restablecerPassword.css";
 
 function RestablecerPassword() {
+  const manejoDeEnvio = (e) => {
+    e.preventDefault();
+    console.log(e);
+  };
   return (
     <div className="col-lg-12 mt-1">
       <img
@@ -16,52 +21,31 @@ function RestablecerPassword() {
         </div>
       </div>
       <div className="col-lg-12 mt-3 form">
-        <h3>Restablecer <br /> contraseña </h3>
-        <form>
-        <div className=" col-lg-12 mt-3 ">
-          <label name="codigo" >Codigo</label>
-        </div>
-        <div className=" col-lg-12 ">
-          <input type="text" name="codigo"/>
-        </div>
-        <div className=" col-lg-12 mt-3 ">
-          <label name="newpass" >nueva contraseña</label>
-        </div>
-        <div className=" col-lg-12 ">
-          <input 
-            type="password" 
-            name="newpass"
+        <h3>
+          Restablecer <br /> contraseña{" "}
+        </h3>
+        <form onSubmit={manejoDeEnvio}>
+          <Componentes titulo="Codigo" placeholder="Codigo" type="text" />
+          <Componentes
+            titulo="Nueva Contraseña"
+            placeholder="Nueva Contraseña"
+            type="password"
+            name="newpassword"
             pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}"
           />
-        </div>
-        <div className=" col-lg-12 mt-3 ">
-          <label name="newpass" >confirmar contraseña</label>
-        </div>
-        <div className=" col-lg-12 ">
-          <input 
-            type="password" 
-            name="newpass"
+          <Componentes
+            titulo="Repita Contraseña"
+            placeholder=" Repita Contraseña"
+            type="password"
+            name="newpassword"
             pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}"
           />
-        </div>
-        <div className=" col-lg-12 ">
-          <button
-              type="submit"
-              className="btn btn-primary  mt-3"
-            >
-              Restablecer
-          </button>
-        </div>
-        
 
-
-
-
-
-      </form>
+          <div className=" col-lg-12 ">
+            <button className="btn btn-primary  mt-3">Restablecer</button>
+          </div>
+        </form>
       </div>
-      
-    
     </div>
   );
 }
