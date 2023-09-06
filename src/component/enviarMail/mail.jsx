@@ -27,7 +27,6 @@ function Enviarmail() {
             placeholder="Ingrese su mail"
             type="text"
             name="mail"
-        
           />
 
           <div className=" col-lg-12 ">
@@ -37,5 +36,6 @@ function Enviarmail() {
       </div>
     </div>
   );
+  const rutas = () => {};
 }
 export default Enviarmail;

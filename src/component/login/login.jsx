@@ -1,8 +1,10 @@
-import CampoTexto from "./crearComponentes/crearComponentes";
 import "./login.css";
+import CampoTexto from "./crearComponentes/crearComponentes";
+
 function Login() {
-  const manejoDeEnvio = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    // La lógica de inicio de sesión se maneja en el componente CampoTexto
   };
 
   return (
@@ -18,17 +20,23 @@ function Login() {
             Revisa y gestiona tu inventario de Activos tecnológicos
           </span>
         </div>
-        <form onSubmit={manejoDeEnvio}>
-          <CampoTexto titulo="Usuario" placeholder="Usuario" type="text" />
+        <form onSubmit={handleSubmit}>
+          <CampoTexto
+            titulo="Usuario"
+            placeholder="Usuario"
+            type="text"
+            name="username"
+          />
           <CampoTexto
             titulo="Contraseña"
             placeholder="Contraseña"
+            name="password"
             type="password"
-            pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}"
           />
-
           <div className="col-lg-12">
-            <button className="btn btn-primary  mt-3">Iniciar</button>
+            <button className="btn btn-primary  mt-3" onChange={handleSubmit}>
+              Iniciar Sesión
+            </button>
             <div className="col-lg-12">
               <span>
                 <a href="/restablecerPassword" className="btn btn mt-2">
@@ -42,4 +50,5 @@ function Login() {
     </div>
   );
 }
+
 export default Login;

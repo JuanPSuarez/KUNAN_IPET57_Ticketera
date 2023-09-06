@@ -2,6 +2,7 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
+
 import Login from "./component/login/login";
 import Dashboard from "./component/dashboard/dashboard";
 import RestablecerPassword from "./component/restablecerPassword/restablecerPassword";
