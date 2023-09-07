@@ -1,28 +1,36 @@
 import "./dashboard.css";
+import { useNavigate } from "react-router-dom";
+import Card from "./props/card";
+
 function Dashboard() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/create_activos");
+  };
+
   return (
-    <div className="col-lg-12 mt-3 fondo">
-      <div className="it p-3">
-        <span className="ti">
-          <strong>Ticketera IT</strong>
-        </span>
+    <div className="col-lg-12  fondo">
+      <div className="col-lg-12 mb-3 fondo">
+        <img src="/public/Logo Kunan Vertical 1.png" alt="" />
       </div>
-      <div className="container_activos">
-        <div>
-          <form className="text-center">
-            <div className="col-lg-12 p-4  form">
-              <label className="user">
-                {" "}
-                <strong>Nuevo Activo</strong>
-              </label>
-            </div>
-
-            <button className="btn btn-success m-4 p-auto">Crear</button>
-
-            <button className="btn btn-danger m-3">Cancelar</button>
-          </form>
-        </div>
+      <span>Revisa y gestiona tu inventario de Activos tecnológicos</span>
+      <div className="col-lg-12 mt-4">
+        <button className="btn  btn-primary" onClick={handleClick}>
+          Nuevo Activo
+        </button>
       </div>
+      <div className="row ">
+        <Card titulo="Asignadas" subTitulo="Maquinas Asignadas" />
+        <Card titulo="Disponibles" subTitulo="Maquinas en Inventario" />
+        <Card titulo="Total de Equipos" subTitulo="i5" />
+        <Card titulo="Equipos y Hardware" />
+      </div>
+      {/* <div className="col-lg-12 mt-2">
+        <button className="btn  btn-primary " onChange={handleClick}>
+          Actualizar
+        </button>
+      </div> */}
     </div>
   );
 }

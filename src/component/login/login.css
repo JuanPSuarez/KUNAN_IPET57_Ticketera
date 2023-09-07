@@ -10,9 +10,12 @@ body {
 }
 .form input {
   background-color: rgba(255, 255, 255, 0);
-  border-style:double;
+  border-style: double;
   color: rgba(3, 3, 3, 0.959);
-  outline-color: blue;
+  border: 0;
+  outline: 0;
+  border-bottom: 2px solid rgb(228, 167, 228);
+
   filter: drop-shadow(10px 8px 6px #11111133);
 }
 

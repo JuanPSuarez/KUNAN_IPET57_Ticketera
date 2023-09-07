@@ -1,10 +1,47 @@
 import "./login.css";
 import CampoTexto from "./crearComponentes/crearComponentes";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // La lógica de inicio de sesión se maneja en el componente CampoTexto
+
+    const newErrors = {};
+    if (formData.username.trim() === "") {
+      newErrors.username = "El nombre de usuario es obligatorio";
+    }
+    if (formData.password.trim() === "") {
+      newErrors.password = "La contraseña es obligatoria";
+    }
+
+    if (formData.username === "admin" && formData.password === "admin") {
+      // Inicio de sesión exitoso, redirige a la ruta /dashboard
+      setSubmitted(true);
+      navigate("/dashboard");
+    } else {
+      // Datos de inicio de sesión incorrectos, muestra un error
+      newErrors.login = "Credenciales incorrectas";
+      setErrors(newErrors);
+    }
   };
 
   return (
@@ -16,7 +53,7 @@ function Login() {
       />
       <div>
         <div className="col-lg-12 p-3">
-          <span className="title ">
+          <span className="title">
             Revisa y gestiona tu inventario de Activos tecnológicos
           </span>
         </div>
@@ -26,15 +63,19 @@ function Login() {
             placeholder="Usuario"
             type="text"
             name="username"
+            value={formData.username}
+            onChange={handleChange}
           />
           <CampoTexto
             titulo="Contraseña"
             placeholder="Contraseña"
             name="password"
             type="password"
+            value={formData.password}
+            onChange={handleChange}
           />
           <div className="col-lg-12">
-            <button className="btn btn-primary  mt-3" onChange={handleSubmit}>
+            <button className="btn btn-primary mt-3" type="submit">
               Iniciar Sesión
             </button>
             <div className="col-lg-12">

@@ -11,7 +11,7 @@ function RestablecerPassword() {
       <img
         src="../public/Logo Kunan Vertical 1.png"
         alt="img kunan"
-        className="img"
+        className="img-s"
       />
       <div className="col-lg-12 p3">
         <div className="col-lg-12 p3">

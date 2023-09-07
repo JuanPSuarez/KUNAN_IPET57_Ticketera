@@ -1,28 +1,54 @@
 body {
-    background: rgb(245, 244, 244);
-    filter: drop-shadow(6px 3px 4px #f7f3f3);
-  }
+  background: rgb(245, 244, 244);
+  filter: drop-shadow(6px 3px 4px #f7f3f3);
+  box-sizing: border-box;
+}
+.fondo span {
+  color: rgba(0, 0, 0, 0.356);
+}
+.ti {
+  color: #181616a6;
+  font-size: 200%;
+}
+.fondo img {
+  width: 25%;
+  box-sizing: border-box;
+}
 
-  .ti {
-    color: #181616a6;
-    font-size: 200%;
-  }
-
-  
 .form input {
-    background-color: rgba(255, 255, 255, 0);
-    border-style:double;
-    color: rgba(3, 3, 3, 0.959);
-    outline-color: blue;
-    filter: drop-shadow(10px 8px 6px #11111133);
-  }
-  
-  div > button {
-    filter: drop-shadow(3px 5px 3px #11111133);
-  }
-  
-  span > a {
-    color: black;
-    text-decoration: none;
-    filter: drop-shadow(3px 5px 3px #11111133);
-  }
+  background-color: rgba(255, 255, 255, 0);
+  border-style: double;
+  color: rgba(3, 3, 3, 0.959);
+  outline-color: blue;
+  filter: drop-shadow(10px 8px 6px #11111133);
+}
+
+div > button {
+  filter: drop-shadow(3px 5px 3px #11111133);
+}
+
+span > a {
+  color: rgba(0, 0, 0, 0.425);
+  text-decoration: none;
+  filter: drop-shadow(3px 5px 3px #11111133);
+}
+
+.disponible {
+  display: block;
+  width: 10.5rem;
+  height: 12rem;
+  background: rgba(255, 255, 255, 0.856);
+  margin: 10px;
+}
+.disponible h2 {
+  text-align: start;
+  font-size: 12px;
+  font-weight: 700;
+}
+.disponible h4 {
+  display: flex;
+
+  text-align: start;
+  font-size: 9px;
+  font-weight: 600;
+}
