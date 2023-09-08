@@ -95,7 +95,7 @@ function Login() {
             <Toaster />
             <div className="col-lg-12">
               <span>
-                <a href="/restablecerPassword" className="btn btn mt-2">
+                <a href="/enviarMail" className="btn btn mt-2">
                   Olvidaste tu contraseña?
                 </a>
               </span>
