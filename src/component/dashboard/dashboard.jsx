@@ -20,7 +20,7 @@ function Dashboard() {
           Nuevo Activo
         </button>
       </div>
-      <div className="row ">
+      <div className="row mt-5">
         <Card titulo="Asignadas" subTitulo="Maquinas Asignadas" />
         <Card titulo="Disponibles" subTitulo="Maquinas en Inventario" />
         <Card titulo="Total de Equipos" subTitulo="i5" />

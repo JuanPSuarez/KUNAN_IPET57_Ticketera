@@ -2,6 +2,11 @@ import "./login.css";
 import CampoTexto from "./crearComponentes/crearComponentes";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Toaster, toast } from "sonner";
+
+function uploadSomething() {
+  return new Promise((resolve) => setTimeout(resolve, 3000));
+} // Add a missing closing brace here
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -34,7 +39,6 @@ function Login() {
     }
 
     if (formData.username === "admin" && formData.password === "admin") {
-      // Inicio de sesión exitoso, redirige a la ruta /dashboard
       setSubmitted(true);
       navigate("/dashboard");
     } else {
@@ -45,7 +49,7 @@ function Login() {
   };
 
   return (
-    <div className="col-lg-12 mt-3 fondo">
+    <div className="col-lg-12 mt-3 ">
       <img
         src="../public/Logo Kunan Vertical 1.png"
         alt="img kunan"
@@ -75,9 +79,20 @@ function Login() {
             onChange={handleChange}
           />
           <div className="col-lg-12">
-            <button className="btn btn-primary mt-3" type="submit">
+            <button
+              className="btn btn-primary mt-3"
+              type="submit"
+              onClick={() => {
+                toast.promise(uploadSomething, {
+                  error: "Error los datos no son iguales",
+                  loading: "Entrando...",
+                  success: "Bienvenido a Ticketera",
+                });
+              }}
+            >
               Iniciar Sesión
             </button>
+            <Toaster />
             <div className="col-lg-12">
               <span>
                 <a href="/restablecerPassword" className="btn btn mt-2">
@@ -90,6 +105,6 @@ function Login() {
       </div>
     </div>
   );
-}
+} // Add a missing closing brace here
 
 export default Login;
