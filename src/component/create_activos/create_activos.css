@@ -3,10 +3,17 @@ body {
     filter: drop-shadow(6px 3px 4px #f7f3f3);
   }
 
-  .ti {
-    color: #181616a6;
-    font-size: 200%;
-  }
+.ti {
+  color: #181616a6;
+  font-size: 160%;
+  display:flex;
+  margin-left: 45%;
+}
+
+.mini{
+  display: flex;
+  margin-left: 49%;
+}
 
   
 .form input {
@@ -26,3 +33,8 @@ body {
     text-decoration: none;
     filter: drop-shadow(3px 5px 3px #11111133);
   }
+.botones_activos{
+  display: flex;
+  margin-left: 40%;
+
+}
