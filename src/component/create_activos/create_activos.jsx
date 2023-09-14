@@ -100,33 +100,31 @@ function Create_activos() {
   //   const parsedDate = parse(formData.fecha, 'yyyy-MM-dd', new Date()); Verificacion de fecha
 
   return (
-    <div className="row col-9 d-inline-block fondo">
-      <div className="p-1">
+    <div className="row-a col-lg-8 d-inline-block mini_w fondo">
+      <div className="p-a">
         <span className="ti">
           <strong>Ticketera IT</strong>
         </span>
-        <div className="form mini p-1">
-          <label>
+        <div className="form mini p-a">
             {" "}
             <strong>Nuevo Activo</strong>
-          </label>
         </div>
       </div>
-      <div className="row container_activos">
+      <div className="row-a container_activos">
         <div>
           <form onSubmit={handleSubmit} className="text-center">
             <div
               className="form-group"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div className="row col-9 d-inline-block p-1 form">
+              <div className="row-a col-lg-8 d-inline-block mini_w p-a form">
                 <label htmlFor="" className="form-label" style={{ flex: "1" }}>
                   {" "}
                   Imagen Del Dispositivo{" "}
                 </label>
               </div>
 
-              <div className="row col-9 d-inline-block">
+              <div className="row-a col-lg-8 d-inline-block mini_w">
                 <input
                   titulo="Imagen"
                   type="file"
@@ -141,13 +139,13 @@ function Create_activos() {
               className="form-group"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div className="row col-9 d-inline-block p-1 form">
+              <div className="row-a col-lg-8 d-inline-block mini_w p-a form">
                 <label htmlFor="" className="form-label" style={{ flex: "1" }}>
                   Nro De Serie
                 </label>
               </div>
 
-              <div className="row col-9 d-inline-block form">
+              <div className="row-a col-lg-8 d-inline-block mini_w form">
                 <input
                   titulo="Numero De Serie"
                   type="text"
@@ -168,14 +166,14 @@ function Create_activos() {
               className="form-group"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div className="row col-9 d-inline-block p-1 form">
+              <div className="row-a col-lg-8 d-inline-block mini_w p-a form">
                 <label htmlFor="" className="form-label" style={{ flex: "1" }}>
                   {" "}
                   Sistema Operativo{" "}
                 </label>
               </div>
 
-              <div className="row col-9 d-inline-block form">
+              <div className="row-a col-lg-8 d-inline-block mini_w form">
                 <input
                   titulo="Sistema Operativo"
                   type="text"
@@ -198,14 +196,14 @@ function Create_activos() {
               className="form-group"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div className="row col-9 d-inline-block p-1 form">
+              <div className="row-a col-lg-8 d-inline-block mini_w p-a form">
                 <label htmlFor="" className="form-label" style={{ flex: "1" }}>
                   {" "}
                   Modelo{" "}
                 </label>
               </div>
 
-              <div className="row col-9 d-inline-block form">
+              <div className="row-a col-lg-8 d-inline-block mini_w form">
                 <input
                   titulo="Modelo"
                   type="text"
@@ -228,14 +226,14 @@ function Create_activos() {
               className="form-group"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div className="row col-9 d-inline-block p-1 form">
+              <div className="row-a col-lg-8 d-inline-block mini_w p-a form">
                 <label htmlFor="" className="form-label" style={{ flex: "1" }}>
                   {" "}
                   Ram{" "}
                 </label>
               </div>
 
-              <div className="row col-9 d-inline-block form">
+              <div className="row-a col-lg-8 d-inline-block mini_w form">
                 <input
                   titulo="Ram"
                   type="text"
@@ -256,14 +254,14 @@ function Create_activos() {
               className="form-group"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div className="row col-9 d-inline-block p-1 form">
+              <div className="row-a col-lg-8 d-inline-block mini_w p-a form">
                 <label htmlFor="" className="form-label" style={{ flex: "1" }}>
                   {" "}
                   Disco{" "}
                 </label>
               </div>
 
-              <div className="row col-9 d-inline-block form">
+              <div className="row-a col-lg-8 d-inline-block mini_w form">
                 <input
                   titulo="Disco"
                   type="text"
@@ -284,14 +282,14 @@ function Create_activos() {
               className="form-group"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div className="row col-9 d-inline-block p-1 form">
+              <div className="row-a col-lg-8 d-inline-block mini_w p-a form">
                 <label htmlFor="" className="form-label" style={{ flex: "1" }}>
                   {" "}
                   USD(valor){" "}
                 </label>
               </div>
 
-              <div className="row col-9 d-inline-block form">
+              <div className="row-a col-lg-8 d-inline-block mini_w form">
                 <input
                   titulo="USD"
                   type="text"
@@ -312,14 +310,14 @@ function Create_activos() {
               className="form-group"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div className="row col-9 d-inline-block p-1 form">
+              <div className="row-a col-lg-8 d-inline-block mini_w p-a form">
                 <label htmlFor="" className="form-label" style={{ flex: "1" }}>
                   {" "}
                   Estado{" "}
                 </label>
               </div>
 
-              <div className="row col-9 d-inline-block form">
+              <div className="row-a col-lg-8 d-inline-block mini_w form">
                 <input
                   titulo="Estado"
                   type="text"
@@ -342,14 +340,14 @@ function Create_activos() {
               className="form-group"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div className="row col-9 d-inline-block p-1 form">
+              <div className="row-a col-lg-8 d-inline-block mini_w p-a form">
                 <label htmlFor="" className="form-label" style={{ flex: "1" }}>
                   {" "}
                   Area/Equipo{" "}
                 </label>
               </div>
 
-              <div className="row col-9 d-inline-block form">
+              <div className="row-a col-lg-8 d-inline-block mini_w form">
                 <input
                   titulo="Area"
                   type="text"
@@ -370,14 +368,14 @@ function Create_activos() {
               className="form-group"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div className="row col-9 d-inline-block p-1 form">
+              <div className="row-a col-lg-8 d-inline-block mini_w p-a form">
                 <label htmlFor="" className="form-label" style={{ flex: "1" }}>
                   {" "}
                   Factura{" "}
                 </label>
               </div>
 
-              <div className="row col-9 d-inline-block form">
+              <div className="row-a col-lg-8 d-inline-block mini_w form">
                 <input
                   titulo="Factura"
                   type="text"
@@ -400,13 +398,13 @@ function Create_activos() {
               className="form-group"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div className="row col-9 d-inline-block p-1  form">
+              <div className="row-a col-lg-8 d-inline-block mini_w p-a  form">
                 <label htmlFor="" className="form-label" style={{ flex: "1" }}>
                   Contacto
                 </label>
               </div>
 
-              <div className="row col-9 d-inline-block form ">
+              <div className="row-a col-lg-8 d-inline-block mini_w form ">
                 <input
                   titulo="Mail"
                   type="text"
@@ -427,14 +425,14 @@ function Create_activos() {
               className="form-group"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div className="row col-9 d-inline-block p-1 form">
+              <div className="row-a col-lg-8 d-inline-block mini_w p-a form">
                 <label htmlFor="" className="form-label" style={{ flex: "1" }}>
                   {" "}
                   Fecha{" "}
                 </label>
               </div>
 
-              <div className="row col-9 d-inline-block form">
+              <div className="row-a col-lg-8 d-inline-block mini_w form">
                 <input
                   titulo="Fecha"
                   type="date"

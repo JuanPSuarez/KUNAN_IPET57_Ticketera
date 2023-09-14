@@ -3,6 +3,15 @@ body {
     filter: drop-shadow(6px 3px 4px #f7f3f3);
   }
 
+.fondo_activos{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mini_w{
+  min-width: 250px;
+}
+
 .ti {
   color: #181616a6;
   font-size: 160%;
@@ -14,13 +23,12 @@ body {
   display: flex;
   margin-left: 49%;
 }
-
   
 .form input {
     background-color: rgba(255, 255, 255, 0);
     border-style:double;
     color: rgba(3, 3, 3, 0.959);
-    outline-color: blue;
+    outline:0;
     filter: drop-shadow(10px 8px 6px #11111133);
   }
   
