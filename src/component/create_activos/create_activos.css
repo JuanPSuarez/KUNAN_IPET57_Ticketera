@@ -1,6 +1,8 @@
 body {
     background: rgb(245, 244, 244);
     filter: drop-shadow(6px 3px 4px #f7f3f3);
+    margin: 0%;
+    padding: 0%;
   }
 
 .fondo_activos{

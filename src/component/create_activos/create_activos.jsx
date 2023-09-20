@@ -174,7 +174,7 @@ function Create_activos() {
               </div>
 
               <div className="row-a col-lg-8 d-inline-block mini_w form">
-                <input
+                <select
                   titulo="Sistema Operativo"
                   type="text"
                   className={`form-control ${
@@ -185,7 +185,13 @@ function Create_activos() {
                   value={formData.sistema}
                   onChange={handleChange}
                   style={{ flex: "2" }}
-                />
+                >
+                  <option value="">Seleccionar...</option>
+                  <option value="window">Window</option>
+                  <option value="linux">Linux</option>
+                  <option value="ubuntu">Ubuntu</option>
+                  <option value="otro">Otro</option>
+                </select>
                 {errors.sistema && (
                   <div className="invalid-feedback">{errors.sistema}</div>
                 )}
@@ -204,9 +210,8 @@ function Create_activos() {
               </div>
 
               <div className="row-a col-lg-8 d-inline-block mini_w form">
-                <input
+                <select
                   titulo="Modelo"
-                  type="text"
                   className={`form-control ${
                     errors.modelo ? "is-invalid" : ""
                   }`}
@@ -215,7 +220,36 @@ function Create_activos() {
                   value={formData.modelo}
                   onChange={handleChange}
                   style={{ flex: "2" }}
-                />
+                >
+                  <option value="">Seleccionar...</option>
+                  <option value="intel">11th Gen Intel(R) Core(TM)</option>
+                  <option value="intel">Intel® Core™ i7-10510U CP</option>
+                  <option value="intel">core i7 10th gen</option>
+                  <option value="intel">Core I7 - 8 generación</option>
+                  <option value="intel">intel core i5 7th generation</option>
+                  <option value="intel">Core i5 - 8250U </option>
+                  <option value="amd">AMD Ryzen 5 3450</option>
+                  <option value="ins">Inspiron 14 </option>
+                  <option value="ins">Inspiron 14 i5</option>
+                  <option value="ins">Inspiron 14-3467</option>
+                  <option value="best">BEST T4 - i7</option>
+                  <option value="bes">BES PRO T5 - i5-1155G7 </option>
+                  <option value="bes">BES T4 - Core i5</option>
+                  <option value="bes">BES PRO T4 - i7-1195G7</option>
+                  <option value="bes">bes pro t4 - i7 10510U</option>
+                  <option value="lat">Latitude 5400</option>
+                  <option value="max">Max 1524 - I3 3120</option>
+                  <option value="max">Max 1524</option>
+                  <option value="max">MAX L5 i7</option>
+                  <option value="max">Max L5</option>
+                  <option value="bes">BES 15292</option>
+                  <option value="v">V330-15IKB</option>
+                  <option value="x">81AX</option>
+                  <option value="u">X540U</option>
+                  <option value="dell">Dell Inspiron 3480 - Intel core</option>
+                  <option value="otro">Otro</option>
+
+                </select>
                 {errors.modelo && (
                   <div className="invalid-feedback">{errors.modelo}</div>
                 )}
@@ -234,7 +268,7 @@ function Create_activos() {
               </div>
 
               <div className="row-a col-lg-8 d-inline-block mini_w form">
-                <input
+                <select
                   titulo="Ram"
                   type="text"
                   className={`form-control ${errors.ram ? "is-invalid" : ""}`}
@@ -243,7 +277,16 @@ function Create_activos() {
                   value={formData.ram}
                   onChange={handleChange}
                   style={{ flex: "2" }}
-                />
+                >
+                  <option value="">Seleccionar...</option>
+                  <option value="4GB">4GB</option>
+                  <option value="8GB">8GB</option>
+                  <option value="12GB">12GB</option>
+                  <option value="16GB">16GB</option>
+                  <option value="32GB">32GB</option>
+                  <option value="64GB">64GB</option>
+                  <option value="otro">Otro</option>
+                </select>
                 {errors.ram && (
                   <div className="invalid-feedback">{errors.ram}</div>
                 )}
@@ -318,7 +361,7 @@ function Create_activos() {
               </div>
 
               <div className="row-a col-lg-8 d-inline-block mini_w form">
-                <input
+                <select
                   titulo="Estado"
                   type="text"
                   className={`form-control ${
@@ -329,7 +372,11 @@ function Create_activos() {
                   value={formData.estado}
                   onChange={handleChange}
                   style={{ flex: "2" }}
-                />
+                >
+                  <option value="">Seleccionar...</option>
+                  <option value="nueva">Nueva</option>
+                  <option value="usada">Usada</option>
+                </select>
                 {errors.estado && (
                   <div className="invalid-feedback">{errors.estado}</div>
                 )}
@@ -348,7 +395,7 @@ function Create_activos() {
               </div>
 
               <div className="row-a col-lg-8 d-inline-block mini_w form">
-                <input
+                <select
                   titulo="Area"
                   type="text"
                   className={`form-control ${errors.area ? "is-invalid" : ""}`}
@@ -357,7 +404,37 @@ function Create_activos() {
                   value={formData.area}
                   onChange={handleChange}
                   style={{ flex: "2" }}
-                />
+                >
+                  <option value="">Seleccionar...</option>
+                  <option value="naranjax">Naranja X - Desarrollo</option>
+                  <option value="silmag">SILMAG - PowerBI</option>
+                  <option value="crmd">CRM - Desarrolador</option>
+                  <option value="crmt">CRM - TL</option>
+                  <option value="crma">CRM - Analista Funcional</option>
+                  <option value="wudb">Western Union - DBA</option>
+                  <option value="wub">Western Union - BPM </option>
+                  <option value="wus">Western Union - Sysadmin</option>
+                  <option value="wum">Western Union - Middleware</option>
+                  <option value="wud">Western Union - Desarrollador </option>
+                  <option value="staffa">STAFF - Administración</option>
+                  <option value="staffc">STAFF - Comercial</option>
+                  <option value="staffcc">STAFF - Comunicaciones</option>
+                  <option value="staffr">STAFF - RRHH </option>
+                  <option value="merlind">Merlin - Desarrollador</option>
+                  <option value="merlint">Merlin - TL </option>
+                  <option value="neural">Neural Actions</option>
+                  <option value="rc">Registro Civil</option>
+                  <option value="rca">Registro Civil - Analista Funcional</option>
+                  <option value="rcc">Registro Civil - Coordinador </option>
+                  <option value="rd">Rentas - Desarrollador </option>
+                  <option value="tr">Tester - Rentas</option>
+                  <option value="rd">Remoto - DBA</option>
+                  <option value="gd">Gobierno - DBA </option>
+                  <option value="otro">Otro</option>
+                  
+                  
+
+                </select>
                 {errors.area && (
                   <div className="invalid-feedback">{errors.area}</div>
                 )}
