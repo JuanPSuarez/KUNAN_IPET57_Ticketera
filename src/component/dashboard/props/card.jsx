@@ -8,4 +8,11 @@ const Card = (props) => {
   );
 };
 
+const Barra = (props) => {
+  return(
+    <div className=""> </div>
+  );
+}
+
 export default Card;
+
