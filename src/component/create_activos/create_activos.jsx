@@ -1,7 +1,8 @@
 import "./create_activos.css";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { db } from "../firebase/firebase-config";
 import { collection, addDoc } from "@firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 function Create_activos() {
   const [formData, setFormData] = useState({
@@ -15,7 +16,7 @@ function Create_activos() {
     area: "",
     factura: "",
     email: "",
-    fecha: '',
+    fecha: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -27,6 +28,8 @@ function Create_activos() {
       [name]: value,
     });
   };
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -89,7 +92,7 @@ function Create_activos() {
       try {
         // Si no hay errores de validación, agrega los datos a Firestore
         const activosCollection = collection(db, "activos");
-  
+
         // Crea un objeto con los datos válidos
         const nuevoActivo = {
           nro: formData.nro,
@@ -104,11 +107,11 @@ function Create_activos() {
           email: formData.email,
           fecha: formData.fecha,
         };
-  
+
         // Agrega el nuevo activo a Firestore
 
         await addDoc(activosCollection, nuevoActivo);
-  
+
         // Limpia el formulario después de agregar los datos
         setFormData({
           nro: "",
@@ -121,8 +124,9 @@ function Create_activos() {
           area: "",
           factura: "",
           email: "",
-          fecha:"",
+          fecha: "",
         });
+        navigate("/activos");
       } catch (error) {
         console.error("Error al agregar datos a Firestore:", error);
       }
@@ -147,8 +151,8 @@ function Create_activos() {
           <strong>Ticketera IT</strong>
         </span>
         <div className="form mini p-a">
-            {" "}
-            <strong>Nuevo Activo</strong>
+          {" "}
+          <strong>Nuevo Activo</strong>
         </div>
       </div>
       <div className="row-a container_activos">
@@ -263,21 +267,35 @@ function Create_activos() {
                   style={{ flex: "2" }}
                 >
                   <option value="">Seleccionar...</option>
-                  <option value="11th Gen Intel(R) Core(TM)">11th Gen Intel(R) Core(TM)</option>
-                  <option value="Intel® Core™ i7-10510U CP">Intel® Core™ i7-10510U CP</option>
+                  <option value="11th Gen Intel(R) Core(TM)">
+                    11th Gen Intel(R) Core(TM)
+                  </option>
+                  <option value="Intel® Core™ i7-10510U CP">
+                    Intel® Core™ i7-10510U CP
+                  </option>
                   <option value="core i7 10th gen">core i7 10th gen</option>
-                  <option value="Core I7 - 8 generación">Core I7 - 8 generación</option>
-                  <option value="intel core i5 7th generation">intel core i5 7th generation</option>
+                  <option value="Core I7 - 8 generación">
+                    Core I7 - 8 generación
+                  </option>
+                  <option value="intel core i5 7th generation">
+                    intel core i5 7th generation
+                  </option>
                   <option value="Core i5 - 8250U">Core i5 - 8250U </option>
                   <option value="AMD Ryzen 5 3450">AMD Ryzen 5 3450</option>
                   <option value="Inspiron 14">Inspiron 14 </option>
                   <option value="Inspiron 14 i5">Inspiron 14 i5</option>
                   <option value="Inspiron 14-3467">Inspiron 14-3467</option>
                   <option value="BEST T4 - i7">BEST T4 - i7</option>
-                  <option value="BES PRO T5 - i5-1155G7">BES PRO T5 - i5-1155G7 </option>
+                  <option value="BES PRO T5 - i5-1155G7">
+                    BES PRO T5 - i5-1155G7{" "}
+                  </option>
                   <option value="BES T4 - Core i5">BES T4 - Core i5</option>
-                  <option value="BES PRO T4 - i7-1195G7">BES PRO T4 - i7-1195G7</option>
-                  <option value="bes pro t4 - i7 10510U">bes pro t4 - i7 10510U</option>
+                  <option value="BES PRO T4 - i7-1195G7">
+                    BES PRO T4 - i7-1195G7
+                  </option>
+                  <option value="bes pro t4 - i7 10510U">
+                    bes pro t4 - i7 10510U
+                  </option>
                   <option value="Latitude 5400">Latitude 5400</option>
                   <option value="Max 1524 - I3 3120">Max 1524 - I3 3120</option>
                   <option value="Max 1524">Max 1524</option>
@@ -287,9 +305,10 @@ function Create_activos() {
                   <option value="V330-15IKB">V330-15IKB</option>
                   <option value="81AX">81AX</option>
                   <option value="X540U">X540U</option>
-                  <option value="Dell Inspiron 3480 - Intel core">Dell Inspiron 3480 - Intel core</option>
+                  <option value="Dell Inspiron 3480 - Intel core">
+                    Dell Inspiron 3480 - Intel core
+                  </option>
                   <option value="Otro">Otro</option>
-
                 </select>
                 {errors.modelo && (
                   <div className="invalid-feedback">{errors.modelo}</div>
@@ -447,34 +466,57 @@ function Create_activos() {
                   style={{ flex: "2" }}
                 >
                   <option value="">Seleccionar...</option>
-                  <option value="Naranja X - Desarrollo">Naranja X - Desarrollo</option>
+                  <option value="Naranja X - Desarrollo">
+                    Naranja X - Desarrollo
+                  </option>
                   <option value="SILMAG - PowerBI">SILMAG - PowerBI</option>
                   <option value="CRM - Desarrolador">CRM - Desarrolador</option>
                   <option value="CRM - TL">CRM - TL</option>
-                  <option value="CRM - Analista Funcional">CRM - Analista Funcional</option>
-                  <option value="Western Union - DBA">Western Union - DBA</option>
-                  <option value="Western Union - BPM">Western Union - BPM </option>
-                  <option value="Western Union - Sysadmin">Western Union - Sysadmin</option>
-                  <option value="Western Union - Middleware">Western Union - Middleware</option>
-                  <option value="Western Union - Desarrollador">Western Union - Desarrollador </option>
-                  <option value="STAFF - Administración">STAFF - Administración</option>
+                  <option value="CRM - Analista Funcional">
+                    CRM - Analista Funcional
+                  </option>
+                  <option value="Western Union - DBA">
+                    Western Union - DBA
+                  </option>
+                  <option value="Western Union - BPM">
+                    Western Union - BPM{" "}
+                  </option>
+                  <option value="Western Union - Sysadmin">
+                    Western Union - Sysadmin
+                  </option>
+                  <option value="Western Union - Middleware">
+                    Western Union - Middleware
+                  </option>
+                  <option value="Western Union - Desarrollador">
+                    Western Union - Desarrollador{" "}
+                  </option>
+                  <option value="STAFF - Administración">
+                    STAFF - Administración
+                  </option>
                   <option value="STAFF - Comercial">STAFF - Comercial</option>
-                  <option value="STAFF - Comunicaciones">STAFF - Comunicaciones</option>
+                  <option value="STAFF - Comunicaciones">
+                    STAFF - Comunicaciones
+                  </option>
                   <option value="STAFF - RRHH">STAFF - RRHH</option>
-                  <option value="Merlin - Desarrollador">Merlin - Desarrollador</option>
+                  <option value="Merlin - Desarrollador">
+                    Merlin - Desarrollador
+                  </option>
                   <option value="Merlin - TL">Merlin - TL </option>
                   <option value="Neural Actions">Neural Actions</option>
                   <option value="Registro Civil">Registro Civil</option>
-                  <option value="Registro Civil - Analista Funcional">Registro Civil - Analista Funcional</option>
-                  <option value="Registro Civil - Coordinador">Registro Civil - Coordinador </option>
-                  <option value="Rentas - Desarrollador">Rentas - Desarrollador </option>
+                  <option value="Registro Civil - Analista Funcional">
+                    Registro Civil - Analista Funcional
+                  </option>
+                  <option value="Registro Civil - Coordinador">
+                    Registro Civil - Coordinador{" "}
+                  </option>
+                  <option value="Rentas - Desarrollador">
+                    Rentas - Desarrollador{" "}
+                  </option>
                   <option value="Tester - Rentas">Tester - Rentas</option>
                   <option value="Remoto - DBA">Remoto - DBA</option>
                   <option value="Gobierno - DBA">Gobierno - DBA </option>
                   <option value="Otro">Otro</option>
-                  
-                  
-
                 </select>
                 {errors.area && (
                   <div className="invalid-feedback">{errors.area}</div>
@@ -567,7 +609,9 @@ function Create_activos() {
               <button type="submit" className="btn btn-success m-3">
                 Crear
               </button>
-              <a href="/activos" className="btn btn-danger m-3">Cancelar</a>
+              <a href="/activos" className="btn btn-danger m-3">
+                Cancelar
+              </a>
             </div>
           </form>
         </div>
@@ -575,4 +619,4 @@ function Create_activos() {
     </div>
   );
 }
-export default Create_activos
+export default Create_activos;
