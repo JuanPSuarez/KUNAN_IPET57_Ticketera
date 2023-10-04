@@ -5,12 +5,18 @@ CREATE TABLE `Pantalla`(
 );
 CREATE TABLE `Activos`(
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `NSerie` INT NOT NULL,
+    `sistema` VARCHAR(255) NOT NULL,
     `Modelo` VARCHAR(255) NOT NULL,
-    `Marca` TEXT NOT NULL,
-    `NSerie` VARCHAR(255) NOT NULL,
-    `Specs` TEXT NOT NULL,
-    `Compra` INT NOT NULL,
-    `Estado` VARCHAR(255) NOT NULL
+    `ram` VARCHAR(255) NOT NULL,
+    `disk` VARCHAR(255) NOT NULL,
+    `usd` VARCHAR(255) NOT NULL,
+    `Estado` VARCHAR(255) NOT NULL,
+    `area` VARCHAR(255) NOT NULL,
+    `factura` TEXT NOT NULL,
+    `email`  VARCHAR(255) NOT NULL,
+    `fecha` DATE NOT NULL;
+    
 );
 CREATE TABLE `Frecuencia`(
     `id_Frecuencia` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
