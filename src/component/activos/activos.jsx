@@ -16,6 +16,9 @@ function Activos() {
   const [editedActivo, setEditedActivo] = useState(null);
   const campoNroRef = useRef(null);
   const modalRef = useRef(null);
+  const deleteModalRef = useRef(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [activoToDelete, setActivoToDelete] = useState(null);
 
   useEffect(() => {
     const fetchActivos = async () => {
@@ -28,8 +31,31 @@ function Activos() {
       setActivos(activosData);
     };
 
+
     fetchActivos();
   }, []);
+
+  const mostrarModalEliminar = (activo) => {
+    setActivoToDelete(activo);
+    setShowDeleteModal(true);
+
+    if (campoNroRef.current) {
+      campoNroRef.current.focus();
+    }
+
+    if (modalRef.current) {
+      modalRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+};
+
+  const cerrarModalEliminar = () => {
+    setShowDeleteModal(false);
+
+    
+    if (modalRef.current) {
+      modalRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const eliminarActivo = async (id) => {
     try {
@@ -38,6 +64,8 @@ function Activos() {
 
       const newActivos = activos.filter((activo) => activo.id !== id);
       setActivos(newActivos);
+
+      cerrarModalEliminar(); 
     } catch (error) {
       console.error("Error al eliminar el activo:", error);
     }
@@ -56,8 +84,11 @@ function Activos() {
     }
   };
 
+  
+
   const cerrarModalEditar = () => {
     setShowEditModal(false);
+    <Modal/>
   };
 
   const handleGuardarCambios = async () => {
@@ -78,13 +109,13 @@ function Activos() {
   };
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <h2>Listado de Activos</h2>
-      <div className="row">
+      <div className="row" >
         {activos.map((activo) => (
-          <div className="col-lg-12 mb-12" key={activo.id}>
-            <Card>
-              <Card.Body>
+          <div className="col-lg-4 col-sm-12 mb-3 " key={activo.id} >
+            <Card >
+              <Card.Body >
                 <Card.Title>{activo.nro}</Card.Title>
                 <Card.Subtitle className="col-lg-12 mb-2 text-muted">
                   Modelo: {activo.modelo}
@@ -108,15 +139,15 @@ function Activos() {
                   <br />
                   Fecha: {activo.fecha}
                 </Card.Text>
-                <Button
-                  variant="success"
+                <Button 
+                  variant="success m-2"
                   onClick={() => mostrarModalEditar(activo)}
                 >
                   Editar
                 </Button>
                 <Button
-                  variant="danger"
-                  onClick={() => eliminarActivo(activo.id)}
+                  variant="danger m-2"
+                  onClick={() => mostrarModalEliminar(activo)}
                 >
                   Eliminar
                 </Button>
@@ -127,6 +158,7 @@ function Activos() {
       </div>
 
       <Modal
+        className=""
         show={showEditModal}
         onHide={cerrarModalEditar}
         ref={modalRef}
@@ -302,6 +334,31 @@ function Activos() {
           </Button>
           <Button variant="primary" onClick={handleGuardarCambios}>
             Guardar Cambios
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      
+      <Modal show={showDeleteModal}
+        onHide={cerrarModalEliminar}
+        ref={deleteModalRef} style={{ maxHeight: "100vh", overflowY: "auto" }} >
+        <Modal.Header closeButton>
+          <Modal.Title >Confirmar Eliminación</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          ¿Estás seguro de que deseas eliminar este activo?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => setShowDeleteModal(false)}
+          >
+            Cancelar
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => eliminarActivo(activoToDelete.id)}
+          >
+            Eliminar
           </Button>
         </Modal.Footer>
       </Modal>
