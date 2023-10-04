@@ -2,6 +2,7 @@ import "./create_activos.css";
 import React, { useState } from 'react';
 import { db } from "../firebase/firebase-config";
 import { collection, addDoc } from "@firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 function Create_activos() {
   const [formData, setFormData] = useState({
@@ -20,6 +21,8 @@ function Create_activos() {
 
   const [errors, setErrors] = useState({});
 
+  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -27,6 +30,8 @@ function Create_activos() {
       [name]: value,
     });
   };
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -123,6 +128,7 @@ function Create_activos() {
           email: "",
           fecha:"",
         });
+        navigate("/activos");
       } catch (error) {
         console.error("Error al agregar datos a Firestore:", error);
       }
