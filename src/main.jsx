@@ -10,6 +10,9 @@ import Activos from "./component/activos/activos";
 import EnviarMail from "./component/enviarMail/mail";
 import Empleados from "./component/empleados/empleados";
 
+
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,6 +46,7 @@ const router = createBrowserRouter([
     path: "/restablecerPassword",
     element: <RestablecerPassword />,
   },
+ 
 ]);
 
 createRoot(document.getElementById("root")).render(
