@@ -9,6 +9,7 @@ import Create_activos from "./component/create_activos/create_activos";
 import Activos from "./component/activos/activos";
 import EnviarMail from "./component/enviarMail/mail";
 import Empleados from "./component/empleados/empleados";
+import Create_empleados from "./component/create_empleados/create_empleados";
 
 
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
   {
     path: "/empleados",
     element: <Empleados />,
+  },
+  {
+    path: "/create_empleados",
+    element: <Create_empleados />,
   },
   {
     path: "/restablecerPassword",
