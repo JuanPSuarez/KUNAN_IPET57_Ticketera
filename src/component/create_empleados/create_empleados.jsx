@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { db } from "../firebase/firebase-config";
 import { collection, addDoc } from "@firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import Dashboard from "../dashboard-left/dash";
 
 function Create_Empleado() {
   const [formData, setFormData] = useState({
@@ -74,59 +75,70 @@ function Create_Empleado() {
   };
 
   return (
-    <div className="container">
-      <h2>Crear Nuevo Empleado</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="usuario" className="form-label">
-            Usuario
-          </label>
-          <input
-            type="text"
-            className={`form-control ${errors.usuario ? "is-invalid" : ""}`}
-            id="usuario"
-            name="usuario"
-            value={formData.usuario}
-            onChange={handleChange}
-          />
-          {errors.usuario && (
-            <div className="invalid-feedback">{errors.usuario}</div>
-          )}
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-lg-2">
+          <Dashboard />
         </div>
-        <div className="mb-3">
-          <label htmlFor="apellido" className="form-label">
-            Apellido
-          </label>
-          <input
-            type="text"
-            className={`form-control ${errors.apellido ? "is-invalid" : ""}`}
-            id="apellido"
-            name="apellido"
-            value={formData.apellido}
-            onChange={handleChange}
-          />
-          {errors.apellido && (
-            <div className="invalid-feedback">{errors.apellido}</div>
-          )}
+        <div className="col-lg-8">
+          <h2>Crear Nuevo Empleado</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="usuario" className="form-label">
+                Nombre
+              </label>
+              <input
+                type="text"
+                className={`form-control ${errors.usuario ? "is-invalid" : ""}`}
+                id="usuario"
+                name="usuario"
+                value={formData.usuario}
+                onChange={handleChange}
+              />
+              {errors.usuario && (
+                <div className="invalid-feedback">{errors.usuario}</div>
+              )}
+            </div>
+            <div className="mb-3">
+              <label htmlFor="apellido" className="form-label">
+                Apellido
+              </label>
+              <input
+                type="text"
+                className={`form-control ${
+                  errors.apellido ? "is-invalid" : ""
+                }`}
+                id="apellido"
+                name="apellido"
+                value={formData.apellido}
+                onChange={handleChange}
+              />
+              {errors.apellido && (
+                <div className="invalid-feedback">{errors.apellido}</div>
+              )}
+            </div>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                Email
+              </label>
+              <input
+                type="email"
+                className={`form-control ${errors.email ? "is-invalid" : ""}`}
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+              {errors.email && (
+                <div className="invalid-feedback">{errors.email}</div>
+              )}
+            </div>
+            <button type="submit" className="btn btn-primary">
+              Crear Empleado
+            </button>
+          </form>
         </div>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email
-          </label>
-          <input
-            type="email"
-            className={`form-control ${errors.email ? "is-invalid" : ""}`}
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          {errors.email && <div className="invalid-feedback">{errors.email}</div>}
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Crear Empleado
-        </button>
-      </form>
+      </div>
     </div>
   );
 }

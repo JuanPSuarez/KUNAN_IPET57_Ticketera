@@ -40,7 +40,7 @@ function Login() {
 
     if (formData.username === "admin" && formData.password === "admin") {
       setSubmitted(true);
-      navigate("/dashboard");
+      navigate("/dashboardMenu");
     } else {
       // Datos de inicio de sesión incorrectos, muestra un error
       newErrors.login = "Credenciales incorrectas";

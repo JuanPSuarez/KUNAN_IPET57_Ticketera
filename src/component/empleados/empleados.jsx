@@ -97,9 +97,9 @@ function Empleados() {
 
   return (
     <div className="container-fluid">
-      <Dashboard/>
+      <Dashboard />
       <h2>Listado de Empleados</h2>
-      <div className="row">
+      <div className="row " style={{ overflowY: "auto", maxHeight: "83vh" }}>
         {empleados.map((empleado) => (
           <div className="col-lg-4 col-sm-12 mb-3" key={empleado.id}>
             <Card>
@@ -114,16 +114,16 @@ function Empleados() {
                   Otros datos del empleado...
                 </Card.Text>
                 <Button
-                  variant="success m-2"
-                  onClick={() => mostrarModalEditar(empleado)}
-                >
-                  Editar
-                </Button>
-                <Button
                   variant="danger m-2"
                   onClick={() => mostrarModalEliminar(empleado)}
                 >
                   Eliminar
+                </Button>
+                <Button
+                  variant="primary m-2"
+                  onClick={() => mostrarModalEditar(empleado)}
+                >
+                  Checkint
                 </Button>
               </Card.Body>
             </Card>
@@ -131,15 +131,7 @@ function Empleados() {
         ))}
       </div>
 
-      <Modal
-        className=""
-        show={showEditModal}
-        onHide={cerrarModalEditar}
-        ref={modalRef}
-        style={{ maxHeight: "100vh", overflowY: "auto" }}
-      >
-        {/* ... (contenido del modal de edición) */}
-      </Modal>
+      {/*  */}
 
       <Modal
         show={showDeleteModal}
@@ -147,7 +139,23 @@ function Empleados() {
         ref={deleteModalRef}
         style={{ maxHeight: "100vh", overflowY: "auto" }}
       >
-        {/* ... (contenido del modal de eliminación) */}
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmar Eliminación</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          ¿Estás seguro de que deseas eliminar este activo?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+            Cancelar
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => eliminarEmpleado(empleadoToDelete.id)}
+          >
+            Eliminar
+          </Button>
+        </Modal.Footer>
       </Modal>
     </div>
   );
