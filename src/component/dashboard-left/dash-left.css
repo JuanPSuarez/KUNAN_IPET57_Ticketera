@@ -1,7 +1,7 @@
 
 /* Estilos personalizados para la barra lateral */
 .sidebar {
-  height: 110%;
+  height: 100vh;
   width: 5%;
   /* Ancho de la barra lateral */
   position: fixed;

@@ -48,12 +48,12 @@ function Activos() {
     if (modalRef.current) {
       modalRef.current.scrollIntoView({ behavior: "smooth" });
     }
-};
+  };
 
   const cerrarModalEliminar = () => {
     setShowDeleteModal(false);
 
-    
+
     if (modalRef.current) {
       modalRef.current.scrollIntoView({ behavior: "smooth" });
     }
@@ -67,7 +67,7 @@ function Activos() {
       const newActivos = activos.filter((activo) => activo.id !== id);
       setActivos(newActivos);
 
-      cerrarModalEliminar(); 
+      cerrarModalEliminar();
     } catch (error) {
       console.error("Error al eliminar el activo:", error);
     }
@@ -86,11 +86,11 @@ function Activos() {
     }
   };
 
-  
+
 
   const cerrarModalEditar = () => {
     setShowEditModal(false);
-    <Modal/>
+    <Modal />
   };
 
   const handleGuardarCambios = async () => {
@@ -112,259 +112,266 @@ function Activos() {
 
   return (
     <div className="container-fluid">
-      <Dashboard/>
-      <h2>Listado de Activos</h2>
-      <div className="row" >
-        {activos.map((activo) => (
-          <div className="col-lg-4 col-sm-12 mb-3 " key={activo.id} >
-            <Card >
-              <Card.Body >
-                <Card.Title>{activo.nro}</Card.Title>
-                <Card.Subtitle className="col-lg-12 mb-2 text-muted">
-                  Modelo: {activo.modelo}
-                </Card.Subtitle>
-                <Card.Text className="">
-                  Sistema Operativo: {activo.sistema}
-                  <br />
-                  RAM: {activo.ram}
-                  <br />
-                  Disco: {activo.disk}
-                  <br />
-                  Valor (USD): {activo.usd}
-                  <br />
-                  Estado: {activo.estado}
-                  <br />
-                  Area/Equipo: {activo.area}
-                  <br />
-                  Factura: {activo.factura}
-                  <br />
-                  Contacto: {activo.email}
-                  <br />
-                  Fecha: {activo.fecha}
-                </Card.Text>
-                <Button 
-                  variant="success m-2"
-                  onClick={() => mostrarModalEditar(activo)}
-                >
-                  Editar
-                </Button>
-                <Button
-                  variant="danger m-2"
-                  onClick={() => mostrarModalEliminar(activo)}
-                >
-                  Eliminar
-                </Button>
-              </Card.Body>
-            </Card>
-          </div>
-        ))}
+      <div className="contner-fluid">
+        <Dashboard />
+        <h2>Listado de Activos</h2>
+
+
+        <div className="row "  style={{ maxHeight: "83vh", overflowY: "auto" }}>
+          
+          {activos.map((activo) => (
+
+            <div className="col-lg-4 col-sm-12 mb-3 " key={activo.id}  >
+
+              <Card >
+                <Card.Body>
+                  <Card.Title>{activo.nro}</Card.Title>
+                  <Card.Subtitle className="col-lg-12 text-muted">
+                    Modelo: {activo.modelo}
+                  </Card.Subtitle>
+                  <Card.Text className="">
+                    Sistema Operativo: {activo.sistema}
+                    <br />
+                    RAM: {activo.ram}
+                    <br />
+                    Disco: {activo.disk}
+                    <br />
+                    Valor (USD): {activo.usd}
+                    <br />
+                    Estado: {activo.estado}
+                    <br />
+                    Area/Equipo: {activo.area}
+                    <br />
+                    Factura: {activo.factura}
+                    <br />
+                    Contacto: {activo.email}
+                    <br />
+                    Fecha: {activo.fecha}
+                  </Card.Text>
+                  <Button
+                    variant="success m-2"
+                    onClick={() => mostrarModalEditar(activo)}
+                  >
+                    Editar
+                  </Button>
+                  <Button
+                    variant="danger m-2"
+                    onClick={() => mostrarModalEliminar(activo)}
+                  >
+                    Eliminar
+                  </Button>
+                </Card.Body>
+              </Card>
+            </div>
+          ))}
+        </div>
+
+        <Modal
+          className=""
+          show={showEditModal}
+          onHide={cerrarModalEditar}
+          ref={modalRef}
+          style={{ maxHeight: "100vh", overflowY: "auto" }}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Editar Activo</Modal.Title>
+          </Modal.Header>
+          <Modal.Body style={{ maxHeight: "400px", overflowY: "auto" }}>
+            {editedActivo && (
+              <Form>
+                <Form.Group controlId="formNro">
+                  <Form.Label>Número</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="nro"
+                    value={editedActivo.nro}
+                    onChange={(e) =>
+                      setEditedActivo({
+                        ...editedActivo,
+                        nro: e.target.value,
+                      })
+                    }
+                    ref={campoNroRef}
+                  />
+                </Form.Group>
+                <Form.Group controlId="formModelo">
+                  <Form.Label>Modelo</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="modelo"
+                    value={editedActivo.modelo}
+                    onChange={(e) =>
+                      setEditedActivo({
+                        ...editedActivo,
+                        modelo: e.target.value,
+                      })
+                    }
+                  />
+                </Form.Group>
+                <Form.Label>Sistema</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="sistema"
+                  value={editedActivo.sistema}
+                  onChange={(e) =>
+                    setEditedActivo({
+                      ...editedActivo,
+                      sistema: e.target.value,
+                    })
+                  }
+                />
+
+                <Form.Label>Ram</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="ram"
+                  value={editedActivo.ram}
+                  onChange={(e) =>
+                    setEditedActivo({
+                      ...editedActivo,
+                      ram: e.target.value,
+                    })
+                  }
+                />
+
+                <Form.Label>Disk</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="disk"
+                  value={editedActivo.disk}
+                  onChange={(e) =>
+                    setEditedActivo({
+                      ...editedActivo,
+                      disk: e.target.value,
+                    })
+                  }
+                />
+
+                <Form.Label>USD</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="usd"
+                  value={editedActivo.usd}
+                  onChange={(e) =>
+                    setEditedActivo({
+                      ...editedActivo,
+                      usd: e.target.value,
+                    })
+                  }
+                />
+
+                <Form.Label>Estado</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="estado"
+                  value={editedActivo.estado}
+                  onChange={(e) =>
+                    setEditedActivo({
+                      ...editedActivo,
+                      estado: e.target.value,
+                    })
+                  }
+                />
+                <Form.Label>Area</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="area"
+                  value={editedActivo.area}
+                  onChange={(e) =>
+                    setEditedActivo({
+                      ...editedActivo,
+                      area: e.target.value,
+                    })
+                  }
+                />
+
+                <Form.Label>Factura</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="factura"
+                  value={editedActivo.factura}
+                  onChange={(e) =>
+                    setEditedActivo({
+                      ...editedActivo,
+                      factura: e.target.value,
+                    })
+                  }
+                />
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="email"
+                  value={editedActivo.email}
+                  onChange={(e) =>
+                    setEditedActivo({
+                      ...editedActivo,
+                      email: e.target.value,
+                    })
+                  }
+                />
+                <Form.Label>Fecha</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="fecha"
+                  value={editedActivo.fecha}
+                  onChange={(e) =>
+                    setEditedActivo({
+                      ...editedActivo,
+                      fecha: e.target.value,
+                    })
+                  }
+                />
+
+                <Form.Label>Estado</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="estado"
+                  value={editedActivo.estado}
+                  onChange={(e) =>
+                    setEditedActivo({
+                      ...editedActivo,
+                      estado: e.target.value,
+                    })
+                  }
+                />
+              </Form>
+            )}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={cerrarModalEditar}>
+              Cerrar
+            </Button>
+            <Button variant="primary" onClick={handleGuardarCambios}>
+              Guardar Cambios
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+        <Modal show={showDeleteModal}
+          onHide={cerrarModalEliminar}
+          ref={deleteModalRef} style={{ maxHeight: "100vh", overflowY: "auto" }} >
+          <Modal.Header closeButton>
+            <Modal.Title >Confirmar Eliminación</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            ¿Estás seguro de que deseas eliminar este activo?
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              onClick={() => setShowDeleteModal(false)}
+            >
+              Cancelar
+            </Button>
+            <Button
+              variant="danger"
+              onClick={() => eliminarActivo(activoToDelete.id)}
+            >
+              Eliminar
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
-
-      <Modal
-        className=""
-        show={showEditModal}
-        onHide={cerrarModalEditar}
-        ref={modalRef}
-        style={{ maxHeight: "100vh", overflowY: "auto" }}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Editar Activo</Modal.Title>
-        </Modal.Header>
-        <Modal.Body style={{ maxHeight: "400px", overflowY: "auto" }}>
-          {editedActivo && (
-            <Form>
-              <Form.Group controlId="formNro">
-                <Form.Label>Número</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="nro"
-                  value={editedActivo.nro}
-                  onChange={(e) =>
-                    setEditedActivo({
-                      ...editedActivo,
-                      nro: e.target.value,
-                    })
-                  }
-                  ref={campoNroRef}
-                />
-              </Form.Group>
-              <Form.Group controlId="formModelo">
-                <Form.Label>Modelo</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="modelo"
-                  value={editedActivo.modelo}
-                  onChange={(e) =>
-                    setEditedActivo({
-                      ...editedActivo,
-                      modelo: e.target.value,
-                    })
-                  }
-                />
-              </Form.Group>
-              <Form.Label>Sistema</Form.Label>
-              <Form.Control
-                type="text"
-                name="sistema"
-                value={editedActivo.sistema}
-                onChange={(e) =>
-                  setEditedActivo({
-                    ...editedActivo,
-                    sistema: e.target.value,
-                  })
-                }
-              />
-
-              <Form.Label>Ram</Form.Label>
-              <Form.Control
-                type="text"
-                name="ram"
-                value={editedActivo.ram}
-                onChange={(e) =>
-                  setEditedActivo({
-                    ...editedActivo,
-                    ram: e.target.value,
-                  })
-                }
-              />
-
-              <Form.Label>Disk</Form.Label>
-              <Form.Control
-                type="text"
-                name="disk"
-                value={editedActivo.disk}
-                onChange={(e) =>
-                  setEditedActivo({
-                    ...editedActivo,
-                    disk: e.target.value,
-                  })
-                }
-              />
-
-              <Form.Label>USD</Form.Label>
-              <Form.Control
-                type="text"
-                name="usd"
-                value={editedActivo.usd}
-                onChange={(e) =>
-                  setEditedActivo({
-                    ...editedActivo,
-                    usd: e.target.value,
-                  })
-                }
-              />
-
-              <Form.Label>Estado</Form.Label>
-              <Form.Control
-                type="text"
-                name="estado"
-                value={editedActivo.estado}
-                onChange={(e) =>
-                  setEditedActivo({
-                    ...editedActivo,
-                    estado: e.target.value,
-                  })
-                }
-              />
-              <Form.Label>Area</Form.Label>
-              <Form.Control
-                type="text"
-                name="area"
-                value={editedActivo.area}
-                onChange={(e) =>
-                  setEditedActivo({
-                    ...editedActivo,
-                    area: e.target.value,
-                  })
-                }
-              />
-
-              <Form.Label>Factura</Form.Label>
-              <Form.Control
-                type="text"
-                name="factura"
-                value={editedActivo.factura}
-                onChange={(e) =>
-                  setEditedActivo({
-                    ...editedActivo,
-                    factura: e.target.value,
-                  })
-                }
-              />
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="text"
-                name="email"
-                value={editedActivo.email}
-                onChange={(e) =>
-                  setEditedActivo({
-                    ...editedActivo,
-                    email: e.target.value,
-                  })
-                }
-              />
-              <Form.Label>Fecha</Form.Label>
-              <Form.Control
-                type="text"
-                name="fecha"
-                value={editedActivo.fecha}
-                onChange={(e) =>
-                  setEditedActivo({
-                    ...editedActivo,
-                    fecha: e.target.value,
-                  })
-                }
-              />
-
-              <Form.Label>Estado</Form.Label>
-              <Form.Control
-                type="text"
-                name="estado"
-                value={editedActivo.estado}
-                onChange={(e) =>
-                  setEditedActivo({
-                    ...editedActivo,
-                    estado: e.target.value,
-                  })
-                }
-              />
-            </Form>
-          )}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={cerrarModalEditar}>
-            Cerrar
-          </Button>
-          <Button variant="primary" onClick={handleGuardarCambios}>
-            Guardar Cambios
-          </Button>
-        </Modal.Footer>
-      </Modal>
-      
-      <Modal show={showDeleteModal}
-        onHide={cerrarModalEliminar}
-        ref={deleteModalRef} style={{ maxHeight: "100vh", overflowY: "auto" }} >
-        <Modal.Header closeButton>
-          <Modal.Title >Confirmar Eliminación</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          ¿Estás seguro de que deseas eliminar este activo?
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="secondary"
-            onClick={() => setShowDeleteModal(false)}
-          >
-            Cancelar
-          </Button>
-          <Button
-            variant="danger"
-            onClick={() => eliminarActivo(activoToDelete.id)}
-          >
-            Eliminar
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 }
