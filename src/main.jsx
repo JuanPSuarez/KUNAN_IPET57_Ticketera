@@ -10,6 +10,7 @@ import Activos from "./component/activos/activos";
 import EnviarMail from "./component/enviarMail/mail";
 import Empleados from "./component/empleados/empleados";
 import Create_empleados from "./component/create_empleados/create_empleados";
+import DashboardMenu from "./component/dashboard/dashboard";
 
 
 
@@ -28,8 +29,8 @@ const router = createBrowserRouter([
     element: <EnviarMail />,
   },
   {
-    path: "/dashboard",
-    element: <Dashboard />,
+    path: "/dashboardMenu",
+    element: <DashboardMenu />,
   },
   {
     path: "/create_activos",

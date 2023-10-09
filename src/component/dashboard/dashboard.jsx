@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import React, { useEffect, useRef } from 'react';
 import Card from "./props/card";
 import { Chart } from "chart.js/auto";
+import Dashboard from "../dashboard-left/dash";
 
-function Dashboard() {
+function DashboardMenu() {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -22,10 +23,10 @@ function Dashboard() {
       datasets: [{
         data: [30, 40, 20],
         backgroundColor: ["red", "green", "blue"]
-        
+
       }]
     };
-    
+
     // Configuración del gráfico de pastel
     const pieOptions = {
       responsive: true
@@ -51,9 +52,11 @@ function Dashboard() {
 
 
   return (
+    
     <div className="col-lg-12  fondo">
+      <Dashboard/>
       <div className="col-lg-12 mb-3 fondo">
-        <img src="/public/Logo Kunan Vertical 1.png" alt="" />
+        <img className="imglogo" src="/public/Logo Kunan Vertical 1.png" alt="" />
       </div>
       <span>Revisa y gestiona tu inventario de Activos tecnológicos</span>
       <div className="col-lg-12 mt-4">
@@ -66,8 +69,8 @@ function Dashboard() {
           Actualizar
         </button>
       </div>
-      
-      <div className="row mt-3">
+
+      <div className="row mt-6 d-flex justify-content-center align-items-center">
         <Card titulo="Asignadas" subTitulo="Maquinas Asignadas" />
         <Card titulo="Disponibles" subTitulo="Maquinas en Inventario" />
         <Card titulo="Total de Equipos" subTitulo="i5" ></Card>
@@ -76,4 +79,4 @@ function Dashboard() {
     </div>
   );
 }
-export default Dashboard;
+export default DashboardMenu;

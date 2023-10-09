@@ -9,6 +9,8 @@ import {
 } from "@firebase/firestore";
 
 import { Card, Button, Modal, Form } from "react-bootstrap";
+import Dashboard from "../dashboard-left/dash";
+
 
 function Activos() {
   const [activos, setActivos] = useState([]);
@@ -110,6 +112,7 @@ function Activos() {
 
   return (
     <div className="container-fluid">
+      <Dashboard/>
       <h2>Listado de Activos</h2>
       <div className="row" >
         {activos.map((activo) => (

@@ -9,6 +9,7 @@ import {
 } from "@firebase/firestore";
 
 import { Card, Button, Modal, Form } from "react-bootstrap";
+import Dashboard from "../dashboard-left/dash";
 
 function Empleados() {
   const [empleados, setEmpleados] = useState([]);
@@ -96,6 +97,7 @@ function Empleados() {
 
   return (
     <div className="container-fluid">
+      <Dashboard/>
       <h2>Listado de Empleados</h2>
       <div className="row">
         {empleados.map((empleado) => (

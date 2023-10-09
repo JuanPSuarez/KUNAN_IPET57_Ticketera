@@ -1,0 +1,34 @@
+
+/* Estilos personalizados para la barra lateral */
+.sidebar {
+  height: 110%;
+  width: 5%;
+  /* Ancho de la barra lateral */
+  position: fixed;
+  background-color: #d6d0d080;
+  top: 0;
+  left: 0;
+  padding-top: 20px;
+}
+
+.sidebar a {
+  border-radius: 30%;
+  padding: 15px;
+  text-decoration: none;
+  font-size: 18px;
+  display: block;
+}
+
+.sidebar a:hover {
+  background-color: #55555567;
+  border-radius: 30%;
+  /* Color de fondo al pasar el mouse */
+}
+
+/* Estilos para el contenido principal */
+.nav-link {
+  margin-top: 25%;
+  margin-left:5%;
+  /* Ancho de la barra lateral */
+  padding: 20px;
+}

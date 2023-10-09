@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { db } from "../firebase/firebase-config";
 import { collection, addDoc } from "@firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import Dashboard from "../dashboard-left/dash";
 
 function Create_activos() {
   const [formData, setFormData] = useState({
@@ -145,7 +146,9 @@ function Create_activos() {
   //   const parsedDate = parse(formData.fecha, 'yyyy-MM-dd', new Date()); Verificacion de fecha
 
   return (
-    <div className="row-a col-lg-8 d-inline-block mini_w fondo">
+    
+    <div className="row-a col-lg-4 d-inline-block mini_w fondo">
+      <Dashboard/>
       <div className="p-a">
         <span className="ti">
           <strong>Ticketera IT</strong>
