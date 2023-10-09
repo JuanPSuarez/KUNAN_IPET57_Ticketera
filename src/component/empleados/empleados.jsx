@@ -6,19 +6,24 @@ import {
   deleteDoc,
   doc,
   updateDoc,
+  addDoc,
 } from "@firebase/firestore";
 
-import { Card, Button, Modal, Form } from "react-bootstrap";
+import { Card, Button, Modal, Form, Dropdown } from "react-bootstrap";
 import Dashboard from "../dashboard-left/dash";
 
 function Empleados() {
   const [empleados, setEmpleados] = useState([]);
   const [showEditModal, setShowEditModal] = useState(false);
   const [editedEmpleado, setEditedEmpleado] = useState(null);
+  const [showActivosList, setShowActivosList] = useState(false);
   const modalRef = useRef(null);
   const deleteModalRef = useRef(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [empleadoToDelete, setEmpleadoToDelete] = useState(null);
+  const [activos, setActivos] = useState([]);
+  const [selectedActivoModelo, setSelectedActivoModelo] = useState("");
+  const [selectedEmpleadoActivo, setSelectedEmpleadoActivo] = useState("Activo");
 
   useEffect(() => {
     const fetchEmpleados = async () => {
@@ -31,7 +36,18 @@ function Empleados() {
       setEmpleados(empleadosData);
     };
 
+    const fetchActivos = async () => {
+      const activosCollectionRef = collection(db, "activos");
+      const querySnapshot = await getDocs(activosCollectionRef);
+      const activosData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setActivos(activosData);
+    };
+
     fetchEmpleados();
+    fetchActivos();
   }, []);
 
   const mostrarModalEliminar = (empleado) => {
@@ -67,7 +83,16 @@ function Empleados() {
 
   const mostrarModalEditar = (empleado) => {
     setEditedEmpleado(empleado);
-    setShowEditModal(true);
+    setShowActivosList(true);
+
+    // Verificar si el empleado tiene un activo asignado
+    if (empleado.activoAsignado) {
+      // Si ya tiene un activo asignado, mostrar solo el botón de quitar activo
+      setShowEditModal(false);
+    } else {
+      // Si no tiene un activo asignado, mostrar el botón de editar
+      setShowEditModal(true);
+    }
 
     if (modalRef.current) {
       modalRef.current.scrollIntoView({ behavior: "smooth" });
@@ -75,23 +100,82 @@ function Empleados() {
   };
 
   const cerrarModalEditar = () => {
+    setShowActivosList(false);
     setShowEditModal(false);
+    setSelectedActivoModelo("");
+    setSelectedEmpleadoActivo("Activo");
   };
 
-  const handleGuardarCambios = async () => {
+  const asignarActivo = async () => {
     try {
+      // Actualizar el documento del empleado con el modelo asignado
       const empleadoDocRef = doc(db, "empleados", editedEmpleado.id);
+      await updateDoc(empleadoDocRef, {
+        activoAsignado: selectedActivoModelo,
+      });
 
-      await updateDoc(empleadoDocRef, editedEmpleado);
+      const empleadoActualizado = {
+        ...editedEmpleado,
+        activoAsignado: selectedActivoModelo,
+      };
 
       const updatedEmpleados = empleados.map((empleado) =>
-        empleado.id === editedEmpleado.id ? editedEmpleado : empleado
+        empleado.id === editedEmpleado.id ? empleadoActualizado : empleado
       );
       setEmpleados(updatedEmpleados);
 
+      // Actualizar el estado del empleado
+      setSelectedEmpleadoActivo(selectedActivoModelo || "Activo");
+
+      // Registrar el evento en la tabla de checkint
+      guardarCheckin(selectedActivoModelo, editedEmpleado);
+
       cerrarModalEditar();
     } catch (error) {
-      console.error("Error al guardar cambios:", error);
+      console.error("Error al asignar el activo al empleado:", error);
+    }
+  };
+
+  const quitarActivo = async () => {
+    try {
+      // Actualizar el documento del empleado con el modelo desasignado
+      const empleadoDocRef = doc(db, "empleados", editedEmpleado.id);
+      await updateDoc(empleadoDocRef, {
+        activoAsignado: null,
+      });
+
+      const empleadoActualizado = {
+        ...editedEmpleado,
+        activoAsignado: null,
+      };
+
+      const updatedEmpleados = empleados.map((empleado) =>
+        empleado.id === editedEmpleado.id ? empleadoActualizado : empleado
+      );
+      setEmpleados(updatedEmpleados);
+
+      // Actualizar el estado del empleado
+      setSelectedEmpleadoActivo("Activo");
+
+      // Registrar el evento en la tabla de checkint
+      guardarCheckin(editedEmpleado.activoAsignado, editedEmpleado);
+
+      cerrarModalEditar();
+    } catch (error) {
+      console.error("Error al quitar el activo del empleado:", error);
+    }
+  };
+
+  const guardarCheckin = async (modeloActivo, empleado) => {
+    try {
+      const checkinCollectionRef = collection(db, "checkint");
+      await addDoc(checkinCollectionRef, {
+        activos: modeloActivo,
+        empleado: `${empleado.nombre} ${empleado.apellido}`,
+        estado: selectedEmpleadoActivo,
+      });
+    } catch (error) {
+      console.error("Error al guardar el registro de checkin:", error);
     }
   };
 
@@ -111,27 +195,43 @@ function Empleados() {
                 <Card.Text className="">
                   Email: {empleado.email}
                   <br />
-                  Otros datos del empleado...
+                  Estado: {selectedEmpleadoActivo}
+                  <br />
+                  {empleado.activoAsignado ? (
+                    <div>
+                      Modelo: {empleado.activoAsignado}
+                      <br />
+                    </div>
+                  ) : (
+                    "Ningún activo asignado"
+                  )}
                 </Card.Text>
+                {empleado.activoAsignado ? (
+                  <Button
+                    variant="danger m-2"
+                    onClick={() => quitarActivo()}
+                  >
+                    Check out
+                  </Button>
+                ) : (
+                  <Button
+                    variant="primary m-2"
+                    onClick={() => mostrarModalEditar(empleado)}
+                  >
+                    Check in
+                  </Button>
+                )}
                 <Button
                   variant="danger m-2"
                   onClick={() => mostrarModalEliminar(empleado)}
                 >
                   Eliminar
                 </Button>
-                <Button
-                  variant="primary m-2"
-                  onClick={() => mostrarModalEditar(empleado)}
-                >
-                  Checkint
-                </Button>
               </Card.Body>
             </Card>
           </div>
         ))}
       </div>
-
-      {/*  */}
 
       <Modal
         show={showDeleteModal}
@@ -143,19 +243,56 @@ function Empleados() {
           <Modal.Title>Confirmar Eliminación</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          ¿Estás seguro de que deseas eliminar este activo?
+          ¿Estás seguro de que deseas eliminar este empleado?
         </Modal.Body>
         <Modal.Footer>
+          <Button variant="danger" onClick={() => eliminarEmpleado(empleadoToDelete.id)}>
+            Eliminar
+          </Button>
           <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
             Cancelar
           </Button>
-          <Button
-            variant="danger"
-            onClick={() => eliminarEmpleado(empleadoToDelete.id)}
-          >
-            Eliminar
-          </Button>
         </Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={showEditModal}
+        onHide={cerrarModalEditar}
+        ref={modalRef}
+        style={{ maxHeight: "100vh", overflowY: "auto" }}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Editar Empleado</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {showActivosList ? (
+            <div>
+              <h3>Selecciona un Activo:</h3>
+              <Dropdown>
+                <Dropdown.Toggle variant="primary" id="dropdown-activo">
+                  {selectedActivoModelo || "Selecciona un activo"}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {activos.map((activo) => (
+                    <Dropdown.Item
+                      key={activo.id}
+                      onClick={() => setSelectedActivoModelo(activo.modelo)}
+                    >
+                      {activo.modelo}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+              <Button variant="primary mt-3" onClick={() => asignarActivo()}>
+                Asignar
+              </Button>
+            </div>
+          ) : (
+            <Form>
+              {/* Agrega los campos de edición aquí */}
+            </Form>
+          )}
+        </Modal.Body>
       </Modal>
     </div>
   );
