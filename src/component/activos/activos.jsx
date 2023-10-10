@@ -11,7 +11,6 @@ import {
 import { Card, Button, Modal, Form } from "react-bootstrap";
 import Dashboard from "../dashboard-left/dash";
 
-
 function Activos() {
   const [activos, setActivos] = useState([]);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -33,7 +32,6 @@ function Activos() {
       setActivos(activosData);
     };
 
-
     fetchActivos();
   }, []);
 
@@ -52,7 +50,6 @@ function Activos() {
 
   const cerrarModalEliminar = () => {
     setShowDeleteModal(false);
-
 
     if (modalRef.current) {
       modalRef.current.scrollIntoView({ behavior: "smooth" });
@@ -86,11 +83,9 @@ function Activos() {
     }
   };
 
-
-
   const cerrarModalEditar = () => {
     setShowEditModal(false);
-    <Modal />
+    <Modal />;
   };
 
   const handleGuardarCambios = async () => {
@@ -116,14 +111,10 @@ function Activos() {
         <Dashboard />
         <h2>Listado de Activos</h2>
 
-
-        <div className="row "  style={{ maxHeight: "83vh", overflowY: "auto" }}>
-          
+        <div className="row " style={{ maxHeight: "83vh", overflowY: "auto" }}>
           {activos.map((activo) => (
-
-            <div className="col-lg-4 col-sm-12 mb-3 " key={activo.id}  >
-
-              <Card >
+            <div className="col-lg-4 col-sm-12 mb-3 " key={activo.id}>
+              <Card>
                 <Card.Body>
                   <Card.Title>{activo.nro}</Card.Title>
                   <Card.Subtitle className="col-lg-12 text-muted">
@@ -148,17 +139,18 @@ function Activos() {
                     <br />
                     Fecha: {activo.fecha}
                   </Card.Text>
-                  <Button
-                    variant="success m-2"
-                    onClick={() => mostrarModalEditar(activo)}
-                  >
-                    Editar
-                  </Button>
+
                   <Button
                     variant="danger m-2"
                     onClick={() => mostrarModalEliminar(activo)}
                   >
                     Eliminar
+                  </Button>
+                  <Button
+                    variant="success m-2"
+                    onClick={() => mostrarModalEditar(activo)}
+                  >
+                    Editar
                   </Button>
                 </Card.Body>
               </Card>
@@ -347,11 +339,14 @@ function Activos() {
           </Modal.Footer>
         </Modal>
 
-        <Modal show={showDeleteModal}
+        <Modal
+          show={showDeleteModal}
           onHide={cerrarModalEliminar}
-          ref={deleteModalRef} style={{ maxHeight: "100vh", overflowY: "auto" }} >
+          ref={deleteModalRef}
+          style={{ maxHeight: "100vh", overflowY: "auto" }}
+        >
           <Modal.Header closeButton>
-            <Modal.Title >Confirmar Eliminación</Modal.Title>
+            <Modal.Title>Confirmar Eliminación</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             ¿Estás seguro de que deseas eliminar este activo?

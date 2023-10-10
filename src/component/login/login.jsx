@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 
 function uploadSomething() {
-  return new Promise((resolve) => setTimeout(resolve, 3000));
-} // Add a missing closing brace here
+  return new Promise((resolve) => setTimeout(resolve, 6000));
+}
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -27,7 +27,7 @@ function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newErrors = {};
@@ -39,11 +39,18 @@ function Login() {
     }
 
     if (formData.username === "admin" && formData.password === "admin") {
-      setSubmitted(true);
-      navigate("/dashboardMenu");
+      await toast.promise(uploadSomething, {
+        error: "Error los datos no son iguales",
+        loading: "Entrando...",
+        success: "Bienvenido a Ticketera",
+      });
+
+      setTimeout(() => {
+        setSubmitted(true);
+        navigate("/dashboardMenu");
+      }, 7000);
     } else {
-      // Datos de inicio de sesión incorrectos, muestra un error
-      newErrors.login = "Credenciales incorrectas";
+      toast.error("Credenciales incorrectas");
       setErrors(newErrors);
     }
   };
@@ -79,32 +86,15 @@ function Login() {
             onChange={handleChange}
           />
           <div className="col-lg-12">
-            <button
-              className="btn btn-primary mt-3"
-              type="submit"
-              onClick={() => {
-                toast.promise(uploadSomething, {
-                  error: "Error los datos no son iguales",
-                  loading: "Entrando...",
-                  success: "Bienvenido a Ticketera",
-                });
-              }}
-            >
+            <button className="btn btn-primary mt-3" type="submit">
               Iniciar Sesión
             </button>
             <Toaster />
-            <div className="col-lg-12">
-              <span>
-                <a href="/enviarMail" className="btn btn mt-2">
-                  Olvidaste tu contraseña?
-                </a>
-              </span>
-            </div>
           </div>
         </form>
       </div>
     </div>
   );
-} // Add a missing closing brace here
+}
 
 export default Login;

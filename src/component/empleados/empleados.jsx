@@ -23,7 +23,8 @@ function Empleados() {
   const [empleadoToDelete, setEmpleadoToDelete] = useState(null);
   const [activos, setActivos] = useState([]);
   const [selectedActivoModelo, setSelectedActivoModelo] = useState("");
-  const [selectedEmpleadoActivo, setSelectedEmpleadoActivo] = useState("Activo");
+  const [selectedEmpleadoActivo, setSelectedEmpleadoActivo] =
+    useState("Activo");
 
   useEffect(() => {
     const fetchEmpleados = async () => {
@@ -85,12 +86,9 @@ function Empleados() {
     setEditedEmpleado(empleado);
     setShowActivosList(true);
 
-    // Verificar si el empleado tiene un activo asignado
     if (empleado.activoAsignado) {
-      // Si ya tiene un activo asignado, mostrar solo el botón de quitar activo
       setShowEditModal(false);
     } else {
-      // Si no tiene un activo asignado, mostrar el botón de editar
       setShowEditModal(true);
     }
 
@@ -108,7 +106,6 @@ function Empleados() {
 
   const asignarActivo = async () => {
     try {
-      // Actualizar el documento del empleado con el modelo asignado
       const empleadoDocRef = doc(db, "empleados", editedEmpleado.id);
       await updateDoc(empleadoDocRef, {
         activoAsignado: selectedActivoModelo,
@@ -124,10 +121,8 @@ function Empleados() {
       );
       setEmpleados(updatedEmpleados);
 
-      // Actualizar el estado del empleado
       setSelectedEmpleadoActivo(selectedActivoModelo || "Activo");
 
-      // Registrar el evento en la tabla de checkint
       guardarCheckin(selectedActivoModelo, editedEmpleado);
 
       cerrarModalEditar();
@@ -138,7 +133,6 @@ function Empleados() {
 
   const quitarActivo = async () => {
     try {
-      // Actualizar el documento del empleado con el modelo desasignado
       const empleadoDocRef = doc(db, "empleados", editedEmpleado.id);
       await updateDoc(empleadoDocRef, {
         activoAsignado: null,
@@ -154,10 +148,8 @@ function Empleados() {
       );
       setEmpleados(updatedEmpleados);
 
-      // Actualizar el estado del empleado
       setSelectedEmpleadoActivo("Activo");
 
-      // Registrar el evento en la tabla de checkint
       guardarCheckin(editedEmpleado.activoAsignado, editedEmpleado);
 
       cerrarModalEditar();
@@ -206,11 +198,14 @@ function Empleados() {
                     "Ningún activo asignado"
                   )}
                 </Card.Text>
+                <Button
+                  variant="danger m-2"
+                  onClick={() => mostrarModalEliminar(empleado)}
+                >
+                  Eliminar
+                </Button>
                 {empleado.activoAsignado ? (
-                  <Button
-                    variant="danger m-2"
-                    onClick={() => quitarActivo()}
-                  >
+                  <Button variant="danger m-2" onClick={() => quitarActivo()}>
                     Check out
                   </Button>
                 ) : (
@@ -221,12 +216,6 @@ function Empleados() {
                     Check in
                   </Button>
                 )}
-                <Button
-                  variant="danger m-2"
-                  onClick={() => mostrarModalEliminar(empleado)}
-                >
-                  Eliminar
-                </Button>
               </Card.Body>
             </Card>
           </div>
@@ -246,7 +235,10 @@ function Empleados() {
           ¿Estás seguro de que deseas eliminar este empleado?
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={() => eliminarEmpleado(empleadoToDelete.id)}>
+          <Button
+            variant="danger"
+            onClick={() => eliminarEmpleado(empleadoToDelete.id)}
+          >
             Eliminar
           </Button>
           <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
@@ -288,9 +280,7 @@ function Empleados() {
               </Button>
             </div>
           ) : (
-            <Form>
-              {/* Agrega los campos de edición aquí */}
-            </Form>
+            <Form></Form>
           )}
         </Modal.Body>
       </Modal>

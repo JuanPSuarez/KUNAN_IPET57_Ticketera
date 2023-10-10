@@ -27,7 +27,6 @@ function DashboardMenu() {
       ],
     };
 
-    // Configuración del gráfico de pastel
     const pieOptions = {
       responsive: true,
     };
